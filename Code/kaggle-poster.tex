@@ -1,0 +1,249 @@
+%%
+%% This is file `tikzposter-template.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% tikzposter.dtx  (with options: `tikzposter-template.tex')
+%%
+%% This is a generated file.
+%%
+%% Copyright (C) 2014 by Pascal Richter, Elena Botoeva, Richard Barnard, and Dirk Surmann
+%%
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 2.0 of this license or (at your option) any later
+%% version. The latest version of this license is in:
+%%
+%% http://www.latex-project.org/lppl.txt
+%%
+%% and version 2.0 or later is part of all distributions of
+%% LaTeX version 2013/12/01 or later.
+%%
+
+
+\documentclass{tikzposter} %Options for format can be included here
+
+\usepackage{todonotes}
+
+\usepackage[tikz]{bclogo}
+\usepackage{lipsum}
+\usepackage{amsmath}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage[absolute]{textpos}
+\usepackage[it]{subfigure}
+\usepackage{graphicx}
+\usepackage{cmbright}
+%\usepackage[default]{cantarell}
+%\usepackage{avant}
+%\usepackage[math]{iwona}
+\usepackage[math]{kurier}
+\usepackage[T1]{fontenc}
+
+
+%% add your packages here
+%\usepackage{hyperref}
+% for random text
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage[pangram]{blindtext}
+
+\colorlet{backgroundcolor}{blue!10}
+
+% Title, Author, Institute
+\title{HOUSE PRICES-ADVANCED REGRESSION TECHNIQUES}
+\author{Tao Wang}
+\institute{University of Chinese Academy of Sciences, China \\
+}
+%\titlegraphic{logos/tulip-logo.eps}
+
+%Choose Layout
+\usetheme{Wave}
+
+%\definebackgroundstyle{samplebackgroundstyle}{
+	%\draw[inner sep=0pt, line width=0pt, color=red, fill=backgroundcolor!30!black]
+	%(bottomleft) rectangle (topright);
+	%}
+%
+%\colorlet{backgroundcolor}{blue!10}
+\begin{document}
+	\colorlet{blocktitlebgcolor}{blue!23}
+	
+	% Title block with title, author, logo, etc.
+	\maketitle
+	\begin{columns}
+	\column{0.5}
+	\block{Introduction}{
+		For home buyers, they generally do not buy homes with basements or near
+		railroads, and there are other features of a home that can even much more influence
+		the price of a home than the number of bedrooms. 
+		\begin{itemize}
+			\item Project Evaluation 
+			There are 1459 data in the test set, and the output contains ID numbers and
+			predicted house prices. Submissions are evaluated on Root-Mean-Squared-Error
+			(RMSE) between the logarithm of the predicted value and the logarithm of the
+			observed sales price.
+			\item File Description
+			\begin{itemize}
+				\item train.csv - the training set
+				\item test.csv - the test set
+				\item data˙description.txt - full description of each column, originally prepared by Dean De Cock but lightly edited to match the column names used here
+				\item sample˙submission.csv - a benchmark submission from a linear regression on year and month of sale, lot square footage, and number of bedrooms
+			\end{itemize}
+			
+		\end{itemize}
+	}
+	\block{Data Analysis}{
+		There are 79 variables of inconsistent types, some discrete and some continuous, and after data processing, the variables of type object can be seen as follows:\\
+		\begin{center}
+			\begin{tabular}{c c c c}
+				\toprule
+				%\centering
+				\# & \texttt{Column}  & \texttt{Non-Null Count} & \texttt{Dtype} \\
+				\midrule
+				$0$
+				&  {$MSZoning$} &  {$1460 non-null$} &  {$object$}  \\
+				$1$
+				&  {$Street$} &  {$1460 non-null$}&  {$object$} \\
+				$2$
+				&  {$Alley$} &  {$91 non-null$} &  {$object$} \\
+				$3$
+				&  {$LotShape$} &  {$1460 non-null$}&  {$object$} \\
+				$...$
+				&  {$...$} &  {$...$} &  {$object$}\\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+		The characteristics of variables of type object are represented by string,such as:
+		\begin{center}
+			\begin{tabular}{c c}
+				\toprule
+				%\centering
+				\multicolumn{2}{c}{Mszoning:Identifies the general zoning classfication of the sale} \\ 
+				\midrule
+				$A$ &  {$Agriculture$}  \\
+				$C$ &  {$Commercial$}  \\
+				$...$ &  {$...$}  \\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+		The numeric variables are as follows:
+		\begin{center}
+			\begin{tabular}{c c c c}
+				\toprule
+				%\centering
+				\# & \texttt{Column}  & \texttt{Non-Null Count} & \texttt{Dtype} \\
+				\midrule
+				$0$
+				&  {$MSZoning$} &  {$1460 non-null$} &  {$int64$}  \\
+				$1$
+				&  {$Street$} &  {$1460 non-null$}&  {$int64$} \\
+				$2$
+				&  {$Alley$} &  {$1201 non-null$} &  {$float64$} \\
+				$3$
+				&  {$LotShape$} &  {$1460 non-null$}&  {$int64$} \\
+				$...$
+				&  {$...$} &  {$...$} &  {$...$}\\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+	}
+	\block{Conclusion}{
+	The difference between the house price prediction experiment and the usual data
+	classification is that the data classification only needs to give the data a specific
+	prediction result and then analyze the correct rate. This time, however, the house
+	price prediction is to give the prediction result to a more detailed point, and then
+	to analyze the error. I think this kind of prediction is more difficult to go up to a
+	better result, and the number of data sets itself is not large. I think the training
+	effect can be improved by increasing the dataset through data expansion.
+	In conclusion, I learned a lot about the new training model in this experiment.
+	For the xgboost model, more adjustments are needed to increase the number of
+	parameters and the depth of the tree to prevent underfitting.
+	}
+	\column{0.5}
+	\block{Data Pre-processing}{
+		First we count the missing data in the training and test sets, and the statistics are as follows:\\
+		\begin{itemize}
+			\item Number of missing data in the training set:
+			\begin{center}
+				\begin{tabular}{c c c }
+					\toprule
+					%\centering
+					$type$ & \texttt{num}  & \texttt{persent} \\
+					\midrule
+					$PoolQC$ &  {$1453$} &  {$0.995$}   \\
+					$MiscFecture$ &  {$1406$} &  {$0.963$}   \\
+					$Alley$ &  {$1369$} &  {$0.938$}   \\
+					$Fence$ &  {$1179$} &  {$0.808$}   \\
+					$FireplaceQu$ &  {$690$} &  {$0.472$}   \\
+					$LotFronttage$ &  {$259$} &  {$0.177$}   \\
+					$GarageType$ &  {$81$} &  {$0.055$}   \\
+					$GarageYrBlt$ &  {$81$} &  {$0.555$}   \\
+					$GarageFinish$ &  {$81$} &  {$0.555$}   \\
+					{$...$} &  {$...$}  &  {$...$}\\
+					\bottomrule
+				\end{tabular}
+			\end{center}
+		\end{itemize}
+		\begin{itemize}
+			\item Number of missing data in the test set:
+			\begin{center}
+				\begin{tabular}{c c c }
+					\toprule
+					%\centering
+					$type$ & \texttt{num}  & \texttt{persent} \\
+					\midrule
+					$PoolQC$ &  {$1456$} &  {$0.997$}   \\
+					$MiscFecture$ &  {$1408$} &  {$0.964$}   \\
+					$Alley$ &  {$1352$} &  {$0.926$}   \\
+					$Fence$ &  {$1169$} &  {$0.800$}   \\
+					$FireplaceQu$ &  {$730$} &  {$0.5$}   \\
+					$LotFronttage$ &  {$227$} &  {$0.155$}   \\
+					$GarageYrBlt$ &  {$78$} &  {$0.053$}   \\
+					$GarageFinish$ &  {$78$} &  {$0.053$}   \\
+					{$...$} &  {$...$}  &  {$...$}\\
+					\bottomrule
+				\end{tabular}
+			\end{center}
+			\item Remove the feature PoolQC, MiscFeature, Alley,Fence and FireplaceQu
+			\item Use the average to fill in 8 missing numbers of masvnrarea, and use the mode to fill in the missing data of LotFrontage and GarageYrlBlt.
+			\item Use log transformation to reduce skewness.
+			\item Delete unreasonable data
+			\item Use mode to fill in the missing data of string type.
+		\end{itemize}
+	}
+	\block{Training Result}{
+		\begin{itemize}
+			\item Training Result Summary
+		\end{itemize}
+		\begin{center}
+			\begin{tabular}{c c }
+				\toprule
+				%\centering
+				$method$ & \texttt{result}  \\
+				\midrule
+				$Linear Regression (low_corr deleted)$ &  {$0.7313$}   \\
+				$Random Forest(low_corr deleted)$ &  {$0.16099$}   \\
+				$K-neighbor(low_corr deleted)$ &  {$0.22111$}   \\
+				$Adaboost Regressor(low_corr deleted)$ &  {$0.22124$}    \\
+				$Xgboost(low_corr deleted)$ &  {$0.0.60098$}    \\
+				$Xgboost$ &  {$0.17429$}    \\
+				$Gradient Boosting Regressor(low_corr deleted)$ &  {$0.15922$}    \\
+				$Gradient Boosting Regressor$ &  {$0.14173$}     \\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+	}
+	\end{columns}
+	\colorlet{notebgcolor}{blue!20}
+	\colorlet{notefrcolor}{blue!20}
+	\note[targetoffsetx=-13cm, targetoffsety=-24cm,rotate=0,angle=180,radius=8cm,width=.96\textwidth,innersep=.4cm]
+	{
+		\begin{minipage}{0.3\linewidth}
+			\centering
+			\includegraphics[width=24cm]{./graphics/logos/tulip-wordmark.eps}
+		\end{minipage}
+	}
+\end{document}
