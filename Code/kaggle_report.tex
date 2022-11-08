@@ -66,8 +66,7 @@
 		\caption{Number of missing data of test set}\label{object}
 	\end{figure}
 	\item Data cleaning of training set:\par
-	Step2:	Since the properties of numeric types are conveniently complemented by medians or averages, etc., we first examine the properties of numeric types. After studying it, we can find that only LotFrontage, MasVnrArea and GarageYrBlt have missing features for the number types in the training set. For the masvnrarea with only 8 missing numbers, we can use the average to fill in, while for the other two with more missing numbers, we choose to use the plural to fill in.\par
-	Step3:	For some positively biased data, we try to use log transformation to reduce their skewness. By using function displot, we can find that the feature LotArea have positive skew like figure6.\par
+	Step2:	Since the properties of numeric types are conveniently complemented by medians or averages, etc., we first examine the properties of numeric types.\par
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.85\textwidth]{../Data/Fig6}
